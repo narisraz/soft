@@ -1,0 +1,14 @@
+<p>Les valeurs des indicateurs suivants du service d’eau <%= server.name %> n’ont pas été saisies ou validées pour le mois de <%= moment(date).format('MMMM YYYY') %></p>
+
+<ul>
+  <% for (var stat of status) { %>
+    <li>
+      <%= stat.indicator.name %>:
+      <% if (stat.indicator.idIndicatorType === null) { %>
+        valeur non saisie
+      <% } else { %>
+        valeur synchronisée non validée
+      <% } %>
+    </li>
+  <% } %>
+</ul>

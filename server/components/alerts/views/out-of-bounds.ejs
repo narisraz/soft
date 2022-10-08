@@ -1,0 +1,20 @@
+<p>Les indicateurs suivants du service d’eau <%= server.name %> ont dépassé les seuils d’alerte définis pour le mois de <%= moment(date).format('MMMM YYYY') %>.</p>
+
+<ul>
+  <% for (var stat of status) { %>
+    <li>
+      <%= stat.indicator.name %> :
+      <%= stat.value.value %> <%= stat.indicator.unit %>,
+      dépassement
+      <% if ((typeof stat.percent !== 'undefined') && stat.percent !== null) { %>
+        de <%= stat.percent.toFixed(1) %>%
+      <% } %>
+      de la valeur-seuil
+      <% if (stat.value.value > stat.indicator.alertMax) { %>
+        supérieure de <%= stat.indicator.alertMax %> <%= stat.indicator.unit %>.
+      <% } else { %>
+        inférieure de <%= stat.indicator.alertMin %> <%= stat.indicator.unit %>.
+      <% } %>
+    </li>
+  <% } %>
+</ul>
